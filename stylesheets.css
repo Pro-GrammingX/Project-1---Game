@@ -8,6 +8,7 @@
   width: 400px;
   display: block;
   background-size: cover;
+  /* background-image: url(https://media.giphy.com/media/vrIWgzi5qXiY8/giphy.gif); */
 }
 .status {
   position: relative;
@@ -72,7 +73,6 @@ ul {
 }
 
 .grid {
-  background-image: url("grass.png");
   position: relative;
   bottom: 1100px;
   border-collapse:collapse;
@@ -92,6 +92,16 @@ ul {
 .grid td.clicked {
     background-color:rgba(0,0,0,0.5);
     font-weight:bold;
+}
+
+.start {
+  border-radius: 10px;
+  border: 1px solid black;
+  text-align: center;
+  width: 100px;
+  margin:5px;
+  padding:5px;
+
 }
 
 .attack {

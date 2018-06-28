@@ -9,13 +9,8 @@
   <link href="stylesheets.css" rel="stylesheet" type="text/css"></link>
 </head>
 <body>
-
-<div class = "scroll-left"><p>A long time ago, in a galaxy far, far away...
-    It is a period of civil war. Rebel spaceships, striking from a hidden  base, have won their first victory  against the evil Galactic Empire.  
-    During the battle, Rebel spies managed to steal secret plans to the Empire's  ultimate weapon, the Death Star, an  armored space station with enough  power to destroy an entire planet.  
-    Pursued by the Empire's sinister agents, Princess Leia races home aboard her  starship, custodian of the stolen plans  that can save her people and restore  freedom to the galaxy.... 
-    </p></div>
-
+<button class = "start">START</button>
+<div class = "scroll-left"><p class ="info">.</p></div>
 
 <div id ="background" class ="board"> </div>
 
@@ -24,8 +19,7 @@
         <ul class = "ul-soldier-list">
 
           <li class = "soldier1">
-          <!--html side :: <p class="health"><span>HEALTH:</span>75</p> -->
-          <!--js side :: $('.viking-box .health').eq(i).html("<span>HEALTH:</span>"+theWar.vikingArmy[i].health); -->
+
           <div class="soldier 1">
               <div class="soldier-box 1">
                 <p class="health"><span>health:</span>1</p>
@@ -48,8 +42,25 @@
           <li class = "soldier3"></li>
           <li class = "soldier4"></li>
           <li class = "soldier5"></li>
-          <li class = "orc1"></li>
-          <li class = "orc2"></li>
+          <li class = "orc1">
+              <div class="orc 1">
+                  <div class="orc-box 1">
+                      <p class="health"><span>health:</span>1</p>
+                      <img class="orc-pic" src="" alt="sample orc">
+                      <p class="strength"><span>strength:</span>1</p>
+                  </div>
+              </div>
+
+          </li>
+          <li class = "orc2">
+              <div class="orc 2">
+                  <div class="orc-box 2">
+                      <p class="health"><span>health:</span>1</p>
+                      <img class="orc-pic" src="" alt="sample orc">
+                      <p class="strength"><span>strength:</span>1</p>
+                  </div>
+              </div>
+          </li>
           <li class = "orc3"></li>
           <li class = "orc4"></li>
           <li class = "orc5"></li>
@@ -60,20 +71,20 @@
 <div class = "gifs">
   <div class = "ul-container-actions">
     <ul class ="ul-action-gifs">
-      <li class = "damage"></li>
-      <li class = "hit"></li>
-      <li class = "magic"></li>
-      <li class = "dead"></li>
-      <li class = "win"></li>
-      <li class = "lose"></li>
+      <li class = "damage">damage</li>
+      <li class = "hit">hit</li>
+      <li class = "magic">magic</li>
+      <li class = "dead">dead</li>
+      <li class = "win">win</li>
+      <li class = "lose">lose</li>
     </ul>
-  </div>
+    </div>
 </div>
 
-<div class = "commands">
+<div class = "commands soldier-attack">
   <button class = "attack">ATTACK</button>
-  <button class = "cast">CAST</button>
 </div>
+
 
 
 
