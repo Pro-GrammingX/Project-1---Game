@@ -213,8 +213,22 @@ BattleField.prototype.attackEnemy = function () {
   var enemyUnit = this.enemy[enemyIndex]; //this.orcArmy[orcIndex].idTile === [2,1] id
   var that = this;
   var battleResult = enemyUnit.receiveDamage(armyUnit.attack());
+  var attacking = $(".soldier").eq(armyIndex);
+  attacking.addClass("engager-indicator");
+  setTimeout(function(){
+    attacking.removeClass('engager-indicator');
+  }, 1000);
+
+  var defending = $(".enemy").eq(enemyIndex);
+  defending.addClass("combat-indicator");
+  defending.addClass("damage-sprite");
+  setTimeout(function(){
+    defending.removeClass("combat-indicator");
+    defending.removeClass("damage-sprite");
+  }, 1000);
   for (var r = 0; r < map.length; r++) {
     for (var c = 0; c < map[r].length; c++) {
+
       if(enemyUnit.health <= 0){
         $(".enemy").eq(enemyIndex).toggleClass('dead');
         $(".enemy").eq(enemyIndex).prop("src", "dead.png");
@@ -229,20 +243,6 @@ BattleField.prototype.attackEnemy = function () {
       }
     }
   }
-    var attacking = $(".soldier").eq(armyIndex);
-    attacking.addClass("engager-indicator");
-    setTimeout(function(){
-      attacking.removeClass('engager-indicator');
-    }, 500);
-
-    var defending = $(".enemy").eq(enemyIndex);
-    defending.addClass("combat-indicator");
-    defending.addClass("damage-sprite");
-    setTimeout(function(){
-      defending.removeClass("combat-indicator");
-      defending.removeClass("damage-sprite");
-    }, 1000);
-
     return battleResult;
 };
 
@@ -253,6 +253,19 @@ BattleField.prototype.enemyAttack = function() {
   var enemyUnit = this.enemy[enemyIndex]; //this.orcArmy[orcIndex].idTile === [2,1] id
   var that = this;
   var battleResult = armyUnit.receiveDamage(enemyUnit.attack());
+  var attacking = $(".enemy").eq(armyIndex);
+  attacking.addClass("engager-indicator");
+  setTimeout(function(){
+    attacking.removeClass('engager-indicator');
+  }, 1500);
+
+  var defending = $(".soldier").eq(enemyIndex);
+  defending.addClass("combat-indicator");
+  defending.addClass("damage-sprite");
+  setTimeout(function(){
+    defending.removeClass("combat-indicator");
+    defending.removeClass("damage-sprite");
+  }, 1500);
   for (var r = 0; r < map.length; r++) {
     for (var c = 0; c < map[r].length; c++) {
       if (armyUnit.health <= 0) {
@@ -268,19 +281,6 @@ BattleField.prototype.enemyAttack = function() {
       }
     }
   }
-  var attacking = $(".enemy").eq(armyIndex);
-  attacking.addClass("engager-indicator");
-  setTimeout(function(){
-    attacking.removeClass('engager-indicator');
-  }, 1500);
-
-  var defending = $(".soldier").eq(enemyIndex);
-  defending.addClass("combat-indicator");
-  defending.addClass("damage-sprite");
-  setTimeout(function(){
-    defending.removeClass("combat-indicator");
-    defending.removeClass("damage-sprite");
-  }, 1500);
 };
 
   BattleField.prototype.combatStatus = function() {
