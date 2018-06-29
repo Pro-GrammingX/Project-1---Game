@@ -9,89 +9,87 @@
   <link href="stylesheets.css" rel="stylesheet" type="text/css"></link>
 </head>
 <body>
-<button class = "start">START</button>
-<div class = "scroll-left"><p class ="info">.</p></div>
 
-<div id ="background" class ="board"> </div>
-
-<div class = "status">
-    <div class = "ul-container-soldiers">
-        <ul class = "ul-soldier-list">
-
-          <li class = "soldier1">
-
-          <div class="soldier 1">
-              <div class="soldier-box 1">
-                <p class="health"><span>health:</span>1</p>
-                <img class="soldier-pic" src="" alt="sample soldier">
-                <p class="strength"><span>strength:</span>1</p>
-              </div>
-          </div>
-          </li>
-
-          <li class = "soldier2">
-            <div class="soldier 2">
-                <div class="soldier-box 2">
-                    <p class="health"><span>health:</span>1</p>
-                    <img class="soldier-pic" src="" alt="sample soldier">
-                    <p class="strength"><span>strength:</span>1</p>
-                </div>
+  <div class = "container">
+    <div class = "row top-border one"></div>
+      <div class = "row panels">
+        <div class = "col-lg-3 col-panel two status">
+            <div class = "soldier-stat">
+                    <div class="sol-box 1">
+                        <p class="name"><span>NAME:</span>0</p>
+                        <p class="health"><span>HEALTH:</span>0</p>
+                        <p class="strength"><span>STRENGTH:</span>0</p>
+                    </div>
+                    <div class="sol-box 2">
+                        <p class="name"><span>NAME:</span>0</p>
+                        <p class="health"><span>HEALTH:</span>0</p>
+                        <p class="strength"><span>STRENGTH:</span>0</p>
+                    </div>
+                    <div class="sol-box 3">
+                        <p class="name"><span>NAME:</span>0</p>
+                        <p class="health"><span>HEALTH:</span>0</p>
+                        <p class="strength"><span>STRENGTH:</span>0</p>
+                    </div>
+                    <div class="sol-box 4">
+                        <p class="name"><span>NAME:</span>0</p>
+                        <p class="health"><span>HEALTH:</span>0</p>
+                        <p class="strength"><span>STRENGTH:</span>0</p>
+                    </div>
             </div>
-          </li>
+        </div>
+        <div class = "col-lg-6 col-panel two">
+            <div id = "screen"><p>
 
-          <li class = "soldier3"></li>
-          <li class = "soldier4"></li>
-          <li class = "soldier5"></li>
-          <li class = "orc1">
-              <div class="orc 1">
-                  <div class="orc-box 1">
-                      <p class="health"><span>health:</span>1</p>
-                      <img class="orc-pic" src="" alt="sample orc">
-                      <p class="strength"><span>strength:</span>1</p>
-                  </div>
-              </div>
-
-          </li>
-          <li class = "orc2">
-              <div class="orc 2">
-                  <div class="orc-box 2">
-                      <p class="health"><span>health:</span>1</p>
-                      <img class="orc-pic" src="" alt="sample orc">
-                      <p class="strength"><span>strength:</span>1</p>
-                  </div>
-              </div>
-          </li>
-          <li class = "orc3"></li>
-          <li class = "orc4"></li>
-          <li class = "orc5"></li>
-    </ul>
+            </p></div>
+        </div>
+        <div class = "col-lg-3 col-panel two status">
+            <div class = "orc-stat">
+                        <div class="orc-box 1">
+                            <p class="name"><span>NAME:</span>1</p>
+                            <p class="health"><span>HEALTH:</span>1</p>
+                            <p class="strength"><span>STRENGTH:</span>1</p>
+                        </div>
+                        <div class="orc-box 2">
+                            <p class="name"><span>NAME:</span>1</p>
+                            <p class="health"><span>HEALTH:</span>1</p>
+                            <p class="strength"><span>STRENGTH:</span>1</p>
+                        </div>
+                        <div class="orc-box 3">
+                            <p class="name"><span>NAME:</span>1</p>
+                            <p class="health"><span>HEALTH:</span>1</p>
+                            <p class="strength"><span>STRENGTH:</span>1</p>
+                        </div>
+                        <div class="orc-box 4">
+                            <p class="name"><span>NAME:</span>1</p>
+                            <p class="health"><span>HEALTH:</span>1</p>
+                            <p class="strength"><span>STRENGTH:</span>1</p>
+                        </div>
+            </div>
+        </div>
+      </div>
+    <div class = "row top-border one">
+      <div class = "col-lg-12">
+      </div>
     </div>
-</div>
-
-<div class = "gifs">
-  <div class = "ul-container-actions">
-    <ul class ="ul-action-gifs">
-      <li class = "damage">damage</li>
-      <li class = "hit">hit</li>
-      <li class = "magic">magic</li>
-      <li class = "dead">dead</li>
-      <li class = "win">win</li>
-      <li class = "lose">lose</li>
-    </ul>
+    <div class = "row bot-panel">
+        <div class = "col-lg-3 bot-panel-buttons three">
+            <button id = "qb" class = "btn qbtn" data-key="81"><p></p></button>
+        </div>
+        <div class = "col-lg-6 three" >
+            <div class = "headline"><span class = "text"><p></p></span></div>
+        </div>
+        <div class = "col-lg-3 bot-panel-buttons three">
+            <button id = "pb" class = "btn pbtn" data-key="80"><p></p></button>
+        </div>
     </div>
-</div>
+    <div class = "row top-border one"></div>
 
-<div class = "commands soldier-attack">
-  <button class = "attack">ATTACK</button>
-</div>
-
-
-
+  </div>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 <script src="newprototype.js"></script>
-<script src="source.js"></script>
+<!-- <script src="prototypes.js"></script>
 </html>
