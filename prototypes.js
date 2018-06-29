@@ -41,138 +41,42 @@ Map.prototype = Object.create(Array.prototype);
 Map.prototype.constructor = Map;
 
 // BASELINE KNIGHT CHARACTER TYPE----------------------------------------------------------------------------------------------------------
-function Adam(name, healthPoints, damagePoints, idTile, direction) {
+function Enemy(name, healthPoints, damagePoints, row, column) {
   this.name = name;
   this.health = healthPoints;
   this.damage = damagePoints;
-  this.currentPosition = idTile;
-  this.direction = direction;
-  this.animationSprites = [0,1,2,3]; //We'll use this later to grab a value from the prototypes to toggle hit events, mana events..
+  this.row = row;
+  this.column = column;
 
-
-  Adam.prototype.attack = function() {
+  Enemy.prototype.attack = function() {
     return this.damage;
   };
 
-  Adam.prototype.receiveDamage = function(theDamage) {
-    this.health -= theDamage;
+  Enemy.prototype.receiveDamage = function(damage) {
+    this.health -= damage;
     if (this.health > 0){
-      return this.name + " was attacked and has received " + theDamage + " points of damage.";
+      return this.name + " was attacked and has received " + damage + " points of damage.";
     } else if (this.health < 0){
       return this.name + " has succumbed to his wounds";
     }
   };
-
-  Adam.prototype.receiveSavageBite = function(savageBiteDamage){
-    this.health -= savageBiteDamage;
-    console.log(this.name + " was attacked!");
-    if (this.health > 0){
-      return this.name + " was bitten by a savage Orc. " + this.name + " takes " + savageBiteDamage + " points of damage!";
-    } else {
-      return this.name + " dies of infection!";
-    }
-  };
-
 }
-//MAGE CHARACTER TYPE-------------------------------------------------------------------------------------------------
-// function Mage(name, health, damage, mana, magicDamage, idTile, direction) {
-//   this.name = name;
-//   this.health = health;
-//   this.damage = damage;
-//   this.mana = mana;
-//   this.magicDamage = magicDamage;
-//   this.idTile = idTile;
-//   this.direction = direction;
-//
-//   Mage.prototype.attack = function() {
-//     return this.damage;
-//   };
-//
-//   Mage.prototype.castSpell = function() {
-//     console.log(this.name + " cast a Spell.");
-//     return this.magicDamage;
-//   };
-//
-//   Mage.prototype.receiveDamage = function(damage){
-//     this.health -= Number(damage);
-//     if (this.health > 0){
-//       return this.name + " has received " + damage + " points of damage.";
-//     } else {
-//       return this.name + " has succumbed to his wounds";
-//     }
-// };
-//
-// Mage.prototype.receiveSavageBite = function(savageBiteDamage){
-//   this.health -= savageBiteDamage;
-//   if (this.health > 0){
-//     return this.name + " was bitten by a savage Orc. " + this.name + " takes " + savageBiteDamage + " points of damage!";
-//   } else {
-//     return this.name + " dies of infection!";
-//   }
-// };
-//
-// }
-// Mage.prototype = Object.create(Adam.prototype);
-// Mage.prototype.constructor = Mage;
 
-// EVE CHARACTER TYPE--------------------------------------------------------------------------------------------
-// function Eve(name, health, damage, rangedAttackDamage, idTile, direction) {
-//   this.name = name;
-//   this.health = health;
-//   this.damage = damage;
-//   this.ranged = rangedAttackDamage;
-//   this.idTile = idTile;
-//   this.direction = direction;
-//
-//   Eve.prototype.attack = function() {
-//     return Number(this.damage);
-//   };
-//
-//   Eve.prototype.receiveDamage = function(damage){
-//     this.health -= damage;
-//
-//     if (this.health > 0){
-//       return this.name + " has received " + damage + " points of damage.";
-//     }else if(this.health < 0) {
-//         return this.name + "has succumbed to her wounds.";
-//     }
-//   };
-//
-//   Eve.prototype.rangedAttack = function() {
-//     console.log(this.name + " fired an arrow!");
-//     return this.ranged;
-//   };
-// }
-//
-// Eve.prototype.receiveSavageBite = function(savageBiteDamage){
-//   this.health -= savageBiteDamage;
-//   console.log(this.name + " was attacked!");
-//   if (this.health > 0){
-//     return this.name + " was bitten by a savage Orc. " + this.name + " takes " + savageBiteDamage + " points of damage!";
-//   } else {
-//     return this.name + " dies of infection!";
-//   }
-// };
-
-// ORC CHARACTER TYPE----------------------------------------------------------------------------------------
-function Orc(name, health, damage, savageBiteDamage, idTile, direction) {
+//Soldier
+function Soldier(name, health, damage, row, column) {
   this.name = name;
   this.health = health;
   this.damage = damage;
-  this.bite = savageBiteDamage;
-  this.idTile = idTile;
-  this.direction = direction;
+  this.row = row;
+  this.column = column;
 
-  Orc.prototype.attack = function() {
+
+  Soldier.prototype.attack = function() {
     return this.damage;
   };
-  // 
-  // Orc.prototype.biteTheBadGuy = function (){
-  //   console.log(this.name + " chomps down with his fangs.");
-  //   return this.bite;
-  // };
 
-  Orc.prototype.receiveDamage = function(damage){
+
+  Soldier.prototype.receiveDamage = function(damage){
     this.health -= damage;
     if (this.health > 0){
       return this.name + " has received " + damage + " points of damage.";
@@ -181,182 +85,206 @@ function Orc(name, health, damage, savageBiteDamage, idTile, direction) {
     }
   };
 
-  // Orc.prototype.receiveMagicDamage = function(magicDamage){
-  //   this.health -= magicDamage;
-  //
-  //   if (this.health > 0){
-  //     return this.name + " has received " + magicDamage + " points of magic damage.";
-  //   }else {
-  //     return this.name + " disintigrates into a pile of ash.";
-  //   }
-  // };
-  //
-  // Orc.prototype.receiveRangedDamage = function(rangedAttackDamage){
-  //   this.health -= rangedAttackDamage;
-  //   if (this.health > 0){
-  //     return this.name + " has received " + rangedAttackDamage + " points of ranged damage.";
-  //   }else {
-  //       return this.name + "is essentially a pin cushion. RIP";
-  //   }
-  // };
 }
 
-function FieldOfBattle(){
-  this.friendlyArmy = [];
-  this.orcArmy = [];
+function battleField(){
+  this.army = [];
+  this.enemy = [];
   this.theDead = [];
 }
 
-FieldOfBattle.prototype.addHero = function (aHero){
-  this.friendlyArmy.push(aHero);
+BattleField.prototype.addSoldier = function (soldier){
+  this.army.push(soldier);
 };
 
-FieldOfBattle.prototype.addOrc = function (orc){
-  this.orcArmy.push(orc);
+BattleField.prototype.addEnemy = function (enemy){
+  this.enemy.push(enemy);
 };
 
 
-FieldOfBattle.prototype.friendlyAttack = function () {
-  var friendlyIndex = Math.floor(Math.random() * this.friendlyArmy.length); //
-  var orcIndex = Math.floor(Math.random() * this.orcArmy.length);
+BattleField.prototype.attackEnemy = function () {
+  var armyIndex = Math.floor(Math.random() * this.army.length); //
+  var enemyIndex = Math.floor(Math.random() * this.enemy.length);
 
-  var friendlyUnit = this.friendlyArmy[friendlyIndex];
-  var orcUnit = this.orcArmy[orcIndex]; //this.orcArmy[orcIndex].idTile === [2,1] id
+  var armyUnit = this.army[armyIndex];
+  var enemyUnit = this.enemy[enemyIndex]; //this.orcArmy[orcIndex].idTile === [2,1] id
   var that = this;
-  var combatResult = orcUnit.receiveDamage(friendlyUnit.attack());
+  var battleResult = enemyUnit.receiveDamage(armyUnit.attack());
   for (var r = 0; r < map.length; r++) {
     for (var c = 0; c < map[r].length; c++) {
 
     }
   }
-  if(orcUnit.health <= 0){
+  if(enemyUnit.health <= 0){
     //animation code will go here
-    $('td > IMG').eq(map[Orc.idTile]).addClass('dead').removeClass('orc');
-    $('td > IMG').eq(orcIndex).prop('src', "dead.png");
-    $('td > IMG').eq(orcIndex).prop('width', '45px');
-    $('td > IMG').eq(orcIndex).prop('height', '45px');
+    // $('td > IMG').eq(map[Orc.idTile]).addClass('dead').removeClass('orc');
+    // $('td > IMG').eq(orcIndex).prop('src', "dead.png");
+    // $('td > IMG').eq(orcIndex).prop('width', '45px');
+    // $('td > IMG').eq(orcIndex).prop('height', '45px');
 
-    that.theDead.push(orcUnit);
-    that.orcArmy.splice(orcIndex, 1);
+    that.theDead.push(enemyUnit);
+    that.enemy.splice(enemyIndex, 1);
     //dom selector here to toggle a tombstone at place in index of orcArmy;
     //we can add class tombstone and toggle it with orc css selector. will need to work on this.
   }
-  var attackerUnit = $('.hero').eq(friendlyIndex);
-  attackerUnit.addClass("engager-indicator");
-  setTimeout(function(){
-    attackerUnit.removeClass('engager-indicator');
-  }, 1000);
-  var woundedOrc = $('.orc').eq(orcIndex);
-  woundedOrc.addClass('combat-indicator');
-  setTimeout(function(){
-    woundedOrc.removeClass('combat-indicator');
-  },1000);
+  //this at one point was highlighting and dehighlighting
+  // var attacking = $('.soldier').eq(friendlyIndex);
+  // attackerUnit.addClass("engager-indicator");
+  // setTimeout(function(){
+  //   attackerUnit.removeClass('engager-indicator');
+  // }, 1000);
+  // var woundedOrc = $('.orc').eq(orcIndex);
+  // woundedOrc.addClass('combat-indicator');
+  // setTimeout(function(){
+  //   woundedOrc.removeClass('combat-indicator');
+  // },1000);
 
-    return combatResult;
+    return battleResult;
 };
 
-FieldOfBattle.prototype.orcAttack = function () {
-  var friendlyIndex = Math.floor(Math.random() * this.friendlyArmy.length); //
-  var orcIndex = Math.floor(Math.random() * this.orcArmy.length);
+BattleField.prototype.enemyAttack = function () {
+  var armyIndex = Math.floor(Math.random() * this.army.length); //
+  var enemyIndex = Math.floor(Math.random() * this.enemy.length);
 
-  var friendlyUnit = this.friendlyArmy[friendlyIndex];
-  var orcUnit = this.orcArmy[orcIndex];
+  var armyUnit = this.army[armyIndex];
+  var enemyUnit = this.enemy[enemyIndex]; //this.orcArmy[orcIndex].idTile === [2,1] id
   var that = this;
-  var combatResult = friendlyUnit.receiveDamage(orcUnit.attack());
-  var x = this.orcArmy[orcIndex].idTile[0];
-  var y = this.orcArmy[orcIndex].idTile[1];
-  if(orcUnit.health <= 0){
+  var battleResult = armyUnit.receiveDamage(enemyUnit.attack());
+  for (var r = 0; r < map.length; r++) {
+    for (var c = 0; c < map[r].length; c++) {
+
+    }
+  }
+  if(armyUnit.health <= 0){
     //animation code will go here
-    $('IMG').eq().addClass('dead').removeClass('orc');
-    $('IMG').eq().prop('src', "dead.png");
-    that.theDead.push(friendlyUnit);
-    that.friendlyArmy.splice(friendlyIndex, 1);
+    // $('td > IMG').eq(map[Orc.idTile]).addClass('dead').removeClass('orc');
+    // $('td > IMG').eq(orcIndex).prop('src', "dead.png");
+    // $('td > IMG').eq(orcIndex).prop('width', '45px');
+    // $('td > IMG').eq(orcIndex).prop('height', '45px');
+
+    that.theDead.push(armyUnit);
+    that.army.splice(armyIndex, 1);
     //dom selector here to toggle a tombstone at place in index of orcArmy;
     //we can add class tombstone and toggle it with orc css selector. will need to work on this.
   }
-  var attackerUnit = $('.orc').eq(orcIndex);
-  attackerUnit.addClass("engager-indicator");
-  setTimeout(function(){
-    attackerUnit.removeClass('engager-indicator');
-  }, 1000);
-  var woundedHero = $('.hero').eq(friendlyIndex);
-  woundedHero.addClass('combat-indicator');
-  setTimeout(function(){
-    woundedHero.removeClass('combat-indicator');
-  },1000);
+  //this at one point was highlighting and dehighlighting
+  // var attacking = $('.soldier').eq(friendlyIndex);
+  // attackerUnit.addClass("engager-indicator");
+  // setTimeout(function(){
+  //   attackerUnit.removeClass('engager-indicator');
+  // }, 1000);
+  // var woundedOrc = $('.orc').eq(orcIndex);
+  // woundedOrc.addClass('combat-indicator');
+  // setTimeout(function(){
+  //   woundedOrc.removeClass('combat-indicator');
+  // },1000);
 
-    return combatResult;
-};
+    return battleResult;
+  };
 
-FieldOfBattle.prototype.combatStatus = function() {
-  if (this.friendlyArmy.length === 0){
-    return "The last of the hero's have fallen...the Orcs feast upon their bodies";
-  } else if (this.orcArmy.length === 0) {
-    return "Our hero's emerge victorious, let us honor those who have fallen: " + theDead;
+
+
+//   var friendlyIndex = Math.floor(Math.random() * this.friendlyArmy.length); //
+//   var orcIndex = Math.floor(Math.random() * this.orcArmy.length);
+//
+//   var friendlyUnit = this.friendlyArmy[friendlyIndex];
+//   var orcUnit = this.orcArmy[orcIndex];
+//   var that = this;
+//   var combatResult = friendlyUnit.receiveDamage(orcUnit.attack());
+//   var x = this.orcArmy[orcIndex].idTile[0];
+//   var y = this.orcArmy[orcIndex].idTile[1];
+//   if(orcUnit.health <= 0){
+//     //animation code will go here
+//     $('IMG').eq().addClass('dead').removeClass('orc');
+//     $('IMG').eq().prop('src', "dead.png");
+//     that.theDead.push(friendlyUnit);
+//     that.friendlyArmy.splice(friendlyIndex, 1);
+//     //dom selector here to toggle a tombstone at place in index of orcArmy;
+//     //we can add class tombstone and toggle it with orc css selector. will need to work on this.
+//   }
+//   var attackerUnit = $('.orc').eq(orcIndex);
+//   attackerUnit.addClass("engager-indicator");
+//   setTimeout(function(){
+//     attackerUnit.removeClass('engager-indicator');
+//   }, 1000);
+//   var woundedHero = $('.hero').eq(friendlyIndex);
+//   woundedHero.addClass('combat-indicator');
+//   setTimeout(function(){
+//     woundedHero.removeClass('combat-indicator');
+//   },1000);
+//
+//     return combatResult;
+// };
+
+BattleField.prototype.combatStatus = function() {
+  if (this.army.length === 0){
+    return "The Soldier's have died, the enemies win";
+  } else if (this.enemy.length === 0) {
+    return "The enemies have all died, the Soldier's win";
   } else{
     return false;
   }
 };
 
-var theFieldOfBattle = new FieldOfBattle();
+var theBattleField = new BattleField();
 
-var Knight3 = new Adam("Knight", 100,20,45,[1, 1], "s");
-var Knight4 = new Adam("Sire", 100, 10, 100, 40, [1,2], "s");
-var Knight1 = new Adam("Fox", 100, 20, [1, 3], "s");
-var Knight2 = new Adam("Adam", 100, 20, [1, 4], "s");
+var Soldier1 = new Soldier("Soldier1", 100, 20, 1, 1);
+var Soldier2 = new Soldier("Soldier2", 100, 20, 1, 2);
+var Soldier3 = new Soldier("Soldier3", 100, 20, 3, 0);
+var Soldier4 = new Soldier("Soldier4", 100, 20, 2, 3);
 
-var Orc1 = new Orc("Supgugh", 120, 20, 30, [2, 1], "n");
-var Orc2 = new Orc("Crothu", 120, 20, 30, [2, 2], "n");
-var Orc3 = new Orc("Ug", 120, 20, 30, [2, 3], "n");
-var Orc4 = new Orc("Trugagh", 120, 20, 30, [2, 4], "n");
+var Enemy1 = new Enemy1("Enemy1", 100, 20, 2, 1);
+var Enemy2 = new Enemy2("Enemy2", 100, 20, 2, 2);
+var Enemy3 = new Enemy3("Enemy3", 100, 20, 2, 3);
+var Enemy4 = new Enemy4("Enemy4", 100, 20, 4, 0);
 
-theFieldOfBattle.addHero(Knight3);
-theFieldOfBattle.addHero(Knight4);
-theFieldOfBattle.addHero(Knight1);
-theFieldOfBattle.addHero(Knight2);
+BattleField.addSoldier(Soldier1);
+BattleField.addSoldier(Soldier2);
+BattleField.addSoldier(Soldier3);
+BattleField.addSoldier(Soldier4);
 
-theFieldOfBattle.addOrc(Orc1);
-theFieldOfBattle.addOrc(Orc2);
-theFieldOfBattle.addOrc(Orc3);
-theFieldOfBattle.addOrc(Orc4);
+BattleField.addEnemy(Enemy1);
+BattleField.addEnemy(Enemy2);
+BattleField.addEnemy(Enemy3);
+BattleField.addEnemy(Enemy4);
 
 //function Orc(name, health, damage, savageBiteDamage, idTile, direction)
 
   //function Orc(name, health, damage, savageBiteDamage, idTile, direction)
 
   // adding DOM features
-  function updateDOM(){
-    for(var i = 0; i < theFieldOfBattle.friendlyArmy.length; i++){
-      $('.soldier-box .health').eq(i).html("<span>health:</span>"+theFieldOfBattle.friendlyArmy[i].health);
-      $('.soldier-box .strength').eq(i).html("<span>strength:</span>"+theFieldOfBattle.friendlyArmy[i].strength);
-    }
-    for(var i = 0; i < theFieldOfBattle.orcArmy.length; i++){
-      $('.orc-box .health').eq(i).html("<span>health:</span>"+theFieldOfBattle.orcArmy[i].health);
-      $('.orc-box .strength').eq(i).html("<span>strength:</span>"+theFieldOfBattle.orcArmy[i].strength);
-    }
-    for(var i = 0; i < theFieldOfBattle.theDead; i++){
-      $('.death-box .health').eq(i).html('RIP');
-      $('.death-box .strength').eq(i).html('RIP');
-    }
-
-  if(theFieldOfBattle.combatStatus()){
-      $('.info scroll-left').text($(theFieldOfBattle.combatResult()));
-  }
-  }
-  $(document).ready(function(){
-    updateDOM();
-    $('.attack').on('click', function(){ $('.info').text(theFieldOfBattle.friendlyAttack()); //theFieldOfBattle.friendlyAttack()
-    setTimeout(function(){ updateDOM();}, 2000);});
-    $('.attack').on('click', function(){ $('.info').text(theFieldOfBattle.orcAttack()); //theFieldOfBattle.friendlyAttack()
-    setTimeout(function(){ updateDOM();}, 2000);});
-    $('.cast').on('click', function(){ $('.info').text(Mage.prototype.castSpell()); //theFieldOfBattle.friendlyAttack()
-    setTimeout(function(){ updateDOM();}, 2000);});
-    $('.shoot').on('click', function(){ $('.info').text(Eve.prototype.rangedAttack()); //theFieldOfBattle.friendlyAttack()
-    setTimeout(function(){ updateDOM();}, 2000);});
-    $('.bite').on('click', function(){ $('.info').text(Orc.prototype.biteTheBadGuy()); //theFieldOfBattle.friendlyAttack()
-    setTimeout(function(){ updateDOM();}, 2000);});
-
-  });
+  // function updateDOM(){
+  //   for(var i = 0; i < theFieldOfBattle.friendlyArmy.length; i++){
+  //     $('.soldier-box .health').eq(i).html("<span>health:</span>"+theFieldOfBattle.friendlyArmy[i].health);
+  //     $('.soldier-box .strength').eq(i).html("<span>strength:</span>"+theFieldOfBattle.friendlyArmy[i].strength);
+  //   }
+  //   for(var i = 0; i < theFieldOfBattle.orcArmy.length; i++){
+  //     $('.orc-box .health').eq(i).html("<span>health:</span>"+theFieldOfBattle.orcArmy[i].health);
+  //     $('.orc-box .strength').eq(i).html("<span>strength:</span>"+theFieldOfBattle.orcArmy[i].strength);
+  //   }
+  //   for(var i = 0; i < theFieldOfBattle.theDead; i++){
+  //     $('.death-box .health').eq(i).html('RIP');
+  //     $('.death-box .strength').eq(i).html('RIP');
+  //   }
+  //
+  // if(theFieldOfBattle.combatStatus()){
+  //     $('.info scroll-left').text($(theFieldOfBattle.combatResult()));
+  // }
+  // }
+  // $(document).ready(function(){
+  //   updateDOM();
+  //   $('.attack').on('click', function(){ $('.info').text(theFieldOfBattle.friendlyAttack()); //theFieldOfBattle.friendlyAttack()
+  //   setTimeout(function(){ updateDOM();}, 2000);});
+  //   $('.attack').on('click', function(){ $('.info').text(theFieldOfBattle.orcAttack()); //theFieldOfBattle.friendlyAttack()
+  //   setTimeout(function(){ updateDOM();}, 2000);});
+  //   $('.cast').on('click', function(){ $('.info').text(Mage.prototype.castSpell()); //theFieldOfBattle.friendlyAttack()
+  //   setTimeout(function(){ updateDOM();}, 2000);});
+  //   $('.shoot').on('click', function(){ $('.info').text(Eve.prototype.rangedAttack()); //theFieldOfBattle.friendlyAttack()
+  //   setTimeout(function(){ updateDOM();}, 2000);});
+  //   $('.bite').on('click', function(){ $('.info').text(Orc.prototype.biteTheBadGuy()); //theFieldOfBattle.friendlyAttack()
+  //   setTimeout(function(){ updateDOM();}, 2000);});
+  //
+  // });
 
 };
   // add the on.load thing to call theFieldOfBattle

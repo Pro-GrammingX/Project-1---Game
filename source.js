@@ -1,6 +1,3 @@
-var lastClicked;
-var idTile;
-
 
 var map = [
   [3,3,0,0,0],
