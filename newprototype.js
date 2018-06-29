@@ -195,7 +195,7 @@ function Soldier(name, health, damage, row, column) {
 function BattleField() {
   this.army = [];
   this.enemy = [];
-  this.theDead = [];
+  this.theDead = 0  ;
 
   BattleField.prototype.addSoldier = function(soldier) {
     this.army.push(soldier);
@@ -219,12 +219,12 @@ BattleField.prototype.attackEnemy = function () {
         $(".enemy").eq(enemyIndex).toggleClass('dead');
         $(".enemy").eq(enemyIndex).prop("src", "dead.png");
         that.theDead.push(enemyUnit);
-        // that.enemy.splice(enemyIndex, 1);
+        that.enemy.splice(enemyIndex, 1);
       } else if (armyUnit.health <= 0){
         $(".soldier").eq(enemyIndex).toggleClass('dead');
         $(".soldier").eq(enemyIndex).prop("src", "dead.png");
         that.theDead.push(armyUnit);
-        // that.army.splice(armyIndex, 1);
+        that.army.splice(armyIndex, 1);
 
       }
     }
@@ -233,7 +233,7 @@ BattleField.prototype.attackEnemy = function () {
     attacking.addClass("engager-indicator");
     setTimeout(function(){
       attacking.removeClass('engager-indicator');
-    }, 2500);
+    }, 500);
 
     var defending = $(".enemy").eq(enemyIndex);
     defending.addClass("combat-indicator");
@@ -241,7 +241,7 @@ BattleField.prototype.attackEnemy = function () {
     setTimeout(function(){
       defending.removeClass("combat-indicator");
       defending.removeClass("damage-sprite");
-    }, 2500);
+    }, 1000);
 
     return battleResult;
 };
@@ -258,13 +258,13 @@ BattleField.prototype.enemyAttack = function() {
       if (armyUnit.health <= 0) {
         $(".soldier").eq(enemyIndex).toggleClass('dead');
         $(".soldier").eq(enemyIndex).prop("src", "dead.png");
-        that.theDead.push(armyUnit);
-        // that.army.splice(armyIndex, 1);
+        that.theDead += 1;
+        that.army.splice(armyIndex, 1);
       } else if (enemyUnit.health <= 0) {
         $(".enemy").eq(enemyIndex).toggleClass('dead');
         $(".enemy").eq(enemyIndex).prop("src", "dead.png");
-        that.theDead.push(enemyUnit);
-        // that.enemy.splice(enemyIndex, 1);
+        that.theDead += 1;
+        that.enemy.splice(enemyIndex, 1);
       }
     }
   }
@@ -284,26 +284,27 @@ BattleField.prototype.enemyAttack = function() {
 };
 
   BattleField.prototype.combatStatus = function() {
-    if (this.army.length === []) {
+    if (this.army.length === 0) {
       return "The Soldier's have died, the enemies win";
-    } else if (this.enemy.length === []) {
+    } else if (this.enemy.length === 0) {
       return "The enemies have all died, the Soldier's win";
     } else {
       return false;
     }
+
   return battleResult;
 };
 
 
-// BattleField.prototype.combatStatus = function() {
-//   if (this.army.length === []){
-//     return "The Soldier's have died, the enemies win";
-//   } else if (this.enemy.length === []) {
-//     return "The enemies have all died, the Soldier's win";
-//   } else{
-//     return false;
-//   }
-// };
+BattleField.prototype.combatStatus = function() {
+  if (this.army.length === 0){
+    return "The Soldier's have died, the enemies win";
+  } else if (this.enemy.length === 0) {
+    return "The enemies have all died, the Soldier's win";
+  } else{
+    return false;
+  }
+};
 
 var theBattleField = new BattleField();
 
@@ -353,7 +354,7 @@ $(document).ready(function(e){
   updateDOM();
   $('.qbtn').on('keydown', function(e){ $('.text').text(theBattleField.attackEnemy()); setTimeout(function(){ updateDOM();}, 1000);});
   $('.pbtn').on('keydown', function(e){ $('.text').text(theBattleField.enemyAttack()); setTimeout(function(){ updateDOM();}, 1000);});
-},1500);
+},1000);
 
 
 $(document).ready(function(){
