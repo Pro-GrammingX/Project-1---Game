@@ -211,8 +211,8 @@ BattleField.prototype.attackEnemy = function () {
   var enemyIndex = Math.floor(Math.random() * this.enemy.length);
   var armyUnit = this.army[armyIndex];
   var enemyUnit = this.enemy[enemyIndex]; //this.orcArmy[orcIndex].idTile === [2,1] id
-  var that = this;
   var battleResult = enemyUnit.receiveDamage(armyUnit.attack());
+  
   var attacking = $(".soldier").eq(armyIndex);
   attacking.addClass("engager-indicator");
   setTimeout(function(){
@@ -227,8 +227,9 @@ BattleField.prototype.attackEnemy = function () {
     defending.removeClass("damage-sprite");
   }, 1000);
   for (var r = 0; r < map.length; r++) {
-    for (var c = 0; c < map[r].length; c++) {
 
+    for (var c = 0; c < map[r].length; c++) {
+      var that = this;
       if(enemyUnit.health <= 0){
         $(".enemy").eq(enemyIndex).toggleClass('dead');
         $(".enemy").eq(enemyIndex).prop("src", "dead.png");
@@ -243,6 +244,7 @@ BattleField.prototype.attackEnemy = function () {
       }
     }
   }
+
     return battleResult;
 };
 
@@ -296,15 +298,15 @@ BattleField.prototype.enemyAttack = function() {
 };
 
 
-BattleField.prototype.combatStatus = function() {
-  if (this.army.length === 0){
-    return "The Soldier's have died, the enemies win";
-  } else if (this.enemy.length === 0) {
-    return "The enemies have all died, the Soldier's win";
-  } else{
-    return false;
-  }
-};
+// BattleField.prototype.combatStatus = function() {
+//   if (this.army.length === 0){
+//     return "The Soldier's have died, the enemies win";
+//   } else if (this.enemy.length === 0) {
+//     return "The enemies have all died, the Soldier's win";
+//   } else{
+//     return false;
+//   }
+// };
 
 var theBattleField = new BattleField();
 
