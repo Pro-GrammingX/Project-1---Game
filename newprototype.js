@@ -195,7 +195,7 @@ function Soldier(name, health, damage, row, column) {
 function BattleField() {
   this.army = [];
   this.enemy = [];
-  this.theDead = 0  ;
+  this.theDead = []  ;
 
   BattleField.prototype.addSoldier = function(soldier) {
     this.army.push(soldier);
@@ -212,7 +212,6 @@ BattleField.prototype.attackEnemy = function () {
   var armyUnit = this.army[armyIndex];
   var enemyUnit = this.enemy[enemyIndex]; //this.orcArmy[orcIndex].idTile === [2,1] id
   var battleResult = enemyUnit.receiveDamage(armyUnit.attack());
-  
   var attacking = $(".soldier").eq(armyIndex);
   attacking.addClass("engager-indicator");
   setTimeout(function(){
@@ -233,16 +232,17 @@ BattleField.prototype.attackEnemy = function () {
       if(enemyUnit.health <= 0){
         $(".enemy").eq(enemyIndex).toggleClass('dead');
         $(".enemy").eq(enemyIndex).prop("src", "dead.png");
-        that.theDead.push(enemyUnit);
         that.enemy.splice(enemyIndex, 1);
-      } else if (armyUnit.health <= 0){
-        $(".soldier").eq(enemyIndex).toggleClass('dead');
-        $(".soldier").eq(enemyIndex).prop("src", "dead.png");
-        that.theDead.push(armyUnit);
-        that.army.splice(armyIndex, 1);
+        that.theDead.push($(enemyUnit));
+      // } else if (armyUnit.health <= 0){
+      //   $(".soldier").eq(enemyIndex).toggleClass('dead');
+      //   $(".soldier").eq(enemyIndex).prop("src", "dead.png");
+      //   that.theDead.push(armyUnit);
+      //   that.army.splice(armyIndex, 1);
 
       }
     }
+
   }
 
     return battleResult;
@@ -274,13 +274,13 @@ BattleField.prototype.enemyAttack = function() {
         $(".soldier").eq(enemyIndex).toggleClass('dead');
         $(".soldier").eq(enemyIndex).prop("src", "dead.png");
         that.theDead += 1;
-        that.army.splice(armyIndex, 1);
       } else if (enemyUnit.health <= 0) {
         $(".enemy").eq(enemyIndex).toggleClass('dead');
         $(".enemy").eq(enemyIndex).prop("src", "dead.png");
         that.theDead += 1;
         that.enemy.splice(enemyIndex, 1);
       }
+
     }
   }
 };
