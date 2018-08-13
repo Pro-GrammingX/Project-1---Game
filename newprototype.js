@@ -11,6 +11,14 @@ var map = [
   [2,1,1,1,3],
 ];
 
+// var map = [
+//   [3,3,0,0,0],
+//   [0,1,1,0,0],
+//   [0,2,2,2,3],
+//   [1,4,0,1,0],
+//   [2,0,0,0,3],
+// ];
+
 //just change to 5 incase something dies
 
 // var grid = clickableGrid(5, 5, function(el, row, col, i) {
@@ -68,7 +76,8 @@ function clickableGrid(rows, cols, map) {
 // document.body.div[2].appendChild(grid);
 
 // tile maker
-
+// why not just do x.setAttribute('class', 'tree')
+//to set the class names when tilemaker filters through the tiles.
 function treeTileMaker(){
 var x = document.createElement("IMG");
 x.setAttribute("src", "tree.gif");
@@ -128,7 +137,7 @@ function orcTileMaker() {
   // var stoneTiles = document.getElementsByClassName('porcy');
   return (x);
   }
-// GAME LOGIC Tricky part starts now ================================================================
+// GAME LOGIC Tricky part starts now ================================================================(it was always tricky Chad ;p)
 
 // var map = [
 //   [3,3,0,0,0],
